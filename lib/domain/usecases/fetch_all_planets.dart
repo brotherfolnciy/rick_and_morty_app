@@ -7,6 +7,6 @@ class FetchAllPlanets {
   final LocationRepository locationRepository;
 
   Future<List<Location>> call() async {
-    return await locationRepository.getAllPlanets();
+    return await locationRepository.fetchAllPlanets();
   }
 }

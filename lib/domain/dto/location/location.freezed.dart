@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Location _$LocationFromJson(Map<String, dynamic> json) {
-  return _Location.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Location {
   int get id => throw _privateConstructorUsedError;
@@ -28,7 +24,6 @@ mixin _$Location {
   String? get url => throw _privateConstructorUsedError;
   DateTime? get created => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LocationCopyWith<Location> get copyWith =>
       throw _privateConstructorUsedError;
@@ -173,7 +168,7 @@ class __$$_LocationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Location implements _Location {
   const _$_Location(
       {required this.id,
@@ -184,9 +179,6 @@ class _$_Location implements _Location {
       this.url,
       this.created})
       : _residents = residents;
-
-  factory _$_Location.fromJson(Map<String, dynamic> json) =>
-      _$$_LocationFromJson(json);
 
   @override
   final int id;
@@ -232,7 +224,6 @@ class _$_Location implements _Location {
             (identical(other.created, created) || other.created == created));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, type, dimension,
       const DeepCollectionEquality().hash(_residents), url, created);
@@ -242,13 +233,6 @@ class _$_Location implements _Location {
   @pragma('vm:prefer-inline')
   _$$_LocationCopyWith<_$_Location> get copyWith =>
       __$$_LocationCopyWithImpl<_$_Location>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_LocationToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Location implements Location {
@@ -260,8 +244,6 @@ abstract class _Location implements Location {
       final List<String>? residents,
       final String? url,
       final DateTime? created}) = _$_Location;
-
-  factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
 
   @override
   int get id;

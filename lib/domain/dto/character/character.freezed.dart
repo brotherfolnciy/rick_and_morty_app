@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Character _$CharacterFromJson(Map<String, dynamic> json) {
-  return _Character.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Character {
   int get id => throw _privateConstructorUsedError;
@@ -26,14 +22,14 @@ mixin _$Character {
   String? get species => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
-  Location? get origin => throw _privateConstructorUsedError;
-  Location? get location => throw _privateConstructorUsedError;
+  CharacterLocation? get origin => throw _privateConstructorUsedError;
+  CharacterLocation? get location => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   List<String>? get episode => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   DateTime? get created => throw _privateConstructorUsedError;
+  bool get favorite => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CharacterCopyWith<Character> get copyWith =>
       throw _privateConstructorUsedError;
@@ -51,15 +47,16 @@ abstract class $CharacterCopyWith<$Res> {
       String? species,
       String? type,
       String? gender,
-      Location? origin,
-      Location? location,
+      CharacterLocation? origin,
+      CharacterLocation? location,
       String? image,
       List<String>? episode,
       String? url,
-      DateTime? created});
+      DateTime? created,
+      bool favorite});
 
-  $LocationCopyWith<$Res>? get origin;
-  $LocationCopyWith<$Res>? get location;
+  $CharacterLocationCopyWith<$Res>? get origin;
+  $CharacterLocationCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -87,6 +84,7 @@ class _$CharacterCopyWithImpl<$Res, $Val extends Character>
     Object? episode = freezed,
     Object? url = freezed,
     Object? created = freezed,
+    Object? favorite = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -116,11 +114,11 @@ class _$CharacterCopyWithImpl<$Res, $Val extends Character>
       origin: freezed == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as Location?,
+              as CharacterLocation?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
+              as CharacterLocation?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -137,29 +135,33 @@ class _$CharacterCopyWithImpl<$Res, $Val extends Character>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      favorite: null == favorite
+          ? _value.favorite
+          : favorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $LocationCopyWith<$Res>? get origin {
+  $CharacterLocationCopyWith<$Res>? get origin {
     if (_value.origin == null) {
       return null;
     }
 
-    return $LocationCopyWith<$Res>(_value.origin!, (value) {
+    return $CharacterLocationCopyWith<$Res>(_value.origin!, (value) {
       return _then(_value.copyWith(origin: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $LocationCopyWith<$Res>? get location {
+  $CharacterLocationCopyWith<$Res>? get location {
     if (_value.location == null) {
       return null;
     }
 
-    return $LocationCopyWith<$Res>(_value.location!, (value) {
+    return $CharacterLocationCopyWith<$Res>(_value.location!, (value) {
       return _then(_value.copyWith(location: value) as $Val);
     });
   }
@@ -179,17 +181,18 @@ abstract class _$$_CharacterCopyWith<$Res> implements $CharacterCopyWith<$Res> {
       String? species,
       String? type,
       String? gender,
-      Location? origin,
-      Location? location,
+      CharacterLocation? origin,
+      CharacterLocation? location,
       String? image,
       List<String>? episode,
       String? url,
-      DateTime? created});
+      DateTime? created,
+      bool favorite});
 
   @override
-  $LocationCopyWith<$Res>? get origin;
+  $CharacterLocationCopyWith<$Res>? get origin;
   @override
-  $LocationCopyWith<$Res>? get location;
+  $CharacterLocationCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -215,6 +218,7 @@ class __$$_CharacterCopyWithImpl<$Res>
     Object? episode = freezed,
     Object? url = freezed,
     Object? created = freezed,
+    Object? favorite = null,
   }) {
     return _then(_$_Character(
       id: null == id
@@ -244,11 +248,11 @@ class __$$_CharacterCopyWithImpl<$Res>
       origin: freezed == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as Location?,
+              as CharacterLocation?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
+              as CharacterLocation?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -265,12 +269,16 @@ class __$$_CharacterCopyWithImpl<$Res>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      favorite: null == favorite
+          ? _value.favorite
+          : favorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Character implements _Character {
   const _$_Character(
       {required this.id,
@@ -284,11 +292,9 @@ class _$_Character implements _Character {
       this.image,
       final List<String>? episode,
       this.url,
-      this.created})
+      this.created,
+      this.favorite = false})
       : _episode = episode;
-
-  factory _$_Character.fromJson(Map<String, dynamic> json) =>
-      _$$_CharacterFromJson(json);
 
   @override
   final int id;
@@ -303,9 +309,9 @@ class _$_Character implements _Character {
   @override
   final String? gender;
   @override
-  final Location? origin;
+  final CharacterLocation? origin;
   @override
-  final Location? location;
+  final CharacterLocation? location;
   @override
   final String? image;
   final List<String>? _episode;
@@ -322,10 +328,13 @@ class _$_Character implements _Character {
   final String? url;
   @override
   final DateTime? created;
+  @override
+  @JsonKey()
+  final bool favorite;
 
   @override
   String toString() {
-    return 'Character(id: $id, name: $name, status: $status, species: $species, type: $type, gender: $gender, origin: $origin, location: $location, image: $image, episode: $episode, url: $url, created: $created)';
+    return 'Character(id: $id, name: $name, status: $status, species: $species, type: $type, gender: $gender, origin: $origin, location: $location, image: $image, episode: $episode, url: $url, created: $created, favorite: $favorite)';
   }
 
   @override
@@ -345,10 +354,11 @@ class _$_Character implements _Character {
             (identical(other.image, image) || other.image == image) &&
             const DeepCollectionEquality().equals(other._episode, _episode) &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.created, created) || other.created == created));
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.favorite, favorite) ||
+                other.favorite == favorite));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -363,20 +373,14 @@ class _$_Character implements _Character {
       image,
       const DeepCollectionEquality().hash(_episode),
       url,
-      created);
+      created,
+      favorite);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_CharacterCopyWith<_$_Character> get copyWith =>
       __$$_CharacterCopyWithImpl<_$_Character>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_CharacterToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Character implements Character {
@@ -387,15 +391,13 @@ abstract class _Character implements Character {
       final String? species,
       final String? type,
       final String? gender,
-      final Location? origin,
-      final Location? location,
+      final CharacterLocation? origin,
+      final CharacterLocation? location,
       final String? image,
       final List<String>? episode,
       final String? url,
-      final DateTime? created}) = _$_Character;
-
-  factory _Character.fromJson(Map<String, dynamic> json) =
-      _$_Character.fromJson;
+      final DateTime? created,
+      final bool favorite}) = _$_Character;
 
   @override
   int get id;
@@ -410,9 +412,9 @@ abstract class _Character implements Character {
   @override
   String? get gender;
   @override
-  Location? get origin;
+  CharacterLocation? get origin;
   @override
-  Location? get location;
+  CharacterLocation? get location;
   @override
   String? get image;
   @override
@@ -422,7 +424,145 @@ abstract class _Character implements Character {
   @override
   DateTime? get created;
   @override
+  bool get favorite;
+  @override
   @JsonKey(ignore: true)
   _$$_CharacterCopyWith<_$_Character> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CharacterLocation {
+  String get name => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CharacterLocationCopyWith<CharacterLocation> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CharacterLocationCopyWith<$Res> {
+  factory $CharacterLocationCopyWith(
+          CharacterLocation value, $Res Function(CharacterLocation) then) =
+      _$CharacterLocationCopyWithImpl<$Res, CharacterLocation>;
+  @useResult
+  $Res call({String name, String url});
+}
+
+/// @nodoc
+class _$CharacterLocationCopyWithImpl<$Res, $Val extends CharacterLocation>
+    implements $CharacterLocationCopyWith<$Res> {
+  _$CharacterLocationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? url = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CharacterLocationCopyWith<$Res>
+    implements $CharacterLocationCopyWith<$Res> {
+  factory _$$_CharacterLocationCopyWith(_$_CharacterLocation value,
+          $Res Function(_$_CharacterLocation) then) =
+      __$$_CharacterLocationCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, String url});
+}
+
+/// @nodoc
+class __$$_CharacterLocationCopyWithImpl<$Res>
+    extends _$CharacterLocationCopyWithImpl<$Res, _$_CharacterLocation>
+    implements _$$_CharacterLocationCopyWith<$Res> {
+  __$$_CharacterLocationCopyWithImpl(
+      _$_CharacterLocation _value, $Res Function(_$_CharacterLocation) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? url = null,
+  }) {
+    return _then(_$_CharacterLocation(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CharacterLocation implements _CharacterLocation {
+  const _$_CharacterLocation({required this.name, required this.url});
+
+  @override
+  final String name;
+  @override
+  final String url;
+
+  @override
+  String toString() {
+    return 'CharacterLocation(name: $name, url: $url)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CharacterLocation &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name, url);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CharacterLocationCopyWith<_$_CharacterLocation> get copyWith =>
+      __$$_CharacterLocationCopyWithImpl<_$_CharacterLocation>(
+          this, _$identity);
+}
+
+abstract class _CharacterLocation implements CharacterLocation {
+  const factory _CharacterLocation(
+      {required final String name,
+      required final String url}) = _$_CharacterLocation;
+
+  @override
+  String get name;
+  @override
+  String get url;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CharacterLocationCopyWith<_$_CharacterLocation> get copyWith =>
       throw _privateConstructorUsedError;
 }
