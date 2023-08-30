@@ -178,7 +178,7 @@ packages:
     source: hosted
     version: "2.3.2"
   dio:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: dio
       sha256: ce75a1b40947fea0a0e16ce73337122a86762e38b982e1ccb909daa3b9bc4197
@@ -251,6 +251,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      sha256: "529de303c739fca98cd7ece5fca500d8ff89649f1bb4b4e94fb20954abcd7468"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.6.0"
   glob:
     dependency: transitive
     description:
@@ -283,6 +291,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  injectable:
+    dependency: "direct main"
+    description:
+      name: injectable
+      sha256: "5217c45fec809286a7b1b4fbcbd70aab1662bf18d9eb207490df421323f7883f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
+  injectable_generator:
+    dependency: "direct dev"
+    description:
+      name: injectable_generator
+      sha256: "5c21787f854dfb94c9e50c43788f93232867ad80ada38a6db81e0bbb51ee5905"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
   io:
     dependency: transitive
     description:
@@ -316,7 +340,7 @@ packages:
     source: hosted
     version: "6.7.1"
   lints:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: lints
       sha256: "0a217c6c989d21039f1498c3ed9f3ed71b354e69873f13a8dfc3c9fe76f1b452"
@@ -403,6 +427,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   retrofit:
     dependency: "direct main"
     description:
@@ -419,6 +451,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.8"
+  rick_and_morty_api:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: c03c8a19570146a4340b8d12033d8a1ca793d371
+      url: "https://github.com/Yash-Garg/RickandMorty-Dart-Wrapper.git"
+    source: git
+    version: "0.1.2"
   shelf:
     dependency: transitive
     description:
@@ -570,3 +611,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.0.5 <4.0.0"
+  flutter: ">=1.17.0"
