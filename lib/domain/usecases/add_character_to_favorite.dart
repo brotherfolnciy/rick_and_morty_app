@@ -13,6 +13,6 @@ class AddCharacterToFavorite {
   final bool status;
 
   Future<void> call() async {
-    await characterRepository.changeCharacterFavoriteStatus(character.id, status);
+    await characterRepository.changeCharacterFavoriteStatusById(character.id, status);
   }
 }

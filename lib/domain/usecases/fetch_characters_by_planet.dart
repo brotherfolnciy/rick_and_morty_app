@@ -5,9 +5,9 @@ class FetchCharactersByPlanet {
   FetchCharactersByPlanet(this.characterRepository, this.planetId);
 
   final CharacterRepository characterRepository;
-  final String planetId;
+  final int planetId;
 
   Future<List<Character>> call() async {
-    return await characterRepository.fetchCharactersByPlanet(planetId);
+    return await characterRepository.fetchCharactersByPlanetId(planetId);
   }
 }

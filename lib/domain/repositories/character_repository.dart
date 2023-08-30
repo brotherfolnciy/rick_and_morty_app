@@ -1,9 +1,9 @@
-import 'package:rick_and_morty_app/domain/dto/dto.dart';
+import 'package:rick_and_morty_app/domain/domain.dart';
 
 abstract class CharacterRepository {
-  Future<void> changeCharacterFavoriteStatus(int id, bool status);
+  Future<void> changeCharacterFavoriteStatusById(int id, bool status);
 
-  Future<List<Character>> fetchCharactersByPlanet(String planetId);
+  Future<List<Character>> fetchCharactersByPlanetId(int id);
 
   Future<List<Character>> fetchFavoriteCharacters();
 }
