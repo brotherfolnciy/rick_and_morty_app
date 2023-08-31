@@ -51,9 +51,7 @@ class RickAndMortyCharacterRepository implements CharacterRepository {
 
   @override
   Future<List<Character>> fetchFavoriteCharacters() async {
-    final prefs = await SharedPreferences.getInstance();
-    final favoriteCharacterIds =
-        (prefs.getStringList(favoriteCharactersPrefsKey) ?? []).map((e) => int.parse(e)).toList();
+    final favoriteCharacterIds = await fetchFavoriteCharacterIds();
 
     final characters = await _characterService.getListOfCharacters(favoriteCharacterIds);
     return _mapper.convertList(characters);
