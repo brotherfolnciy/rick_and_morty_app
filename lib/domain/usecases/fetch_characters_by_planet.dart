@@ -7,7 +7,7 @@ class FetchCharactersByPlanet {
   final CharacterRepository characterRepository;
 
   Future<List<Character>> call(int planetId) async {
-    final favoriteCharacterIds = await characterRepository.getFavoriteCharacterIds();
+    final favoriteCharacterIds = await characterRepository.fetchFavoriteCharacterIds();
 
     final characters = await characterRepository.fetchCharactersByPlanetId(planetId);
 
