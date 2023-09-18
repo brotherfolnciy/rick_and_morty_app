@@ -6,13 +6,13 @@ out vec4 fragColor;
 
 float vDrop(vec2 uv,float t)
 {
-    uv.x = uv.x*128.0;						// H-Count
+    uv.x = uv.x*128.0;						
     float dx = fract(uv.x);
     uv.x = floor(uv.x);
-    uv.y *= 0.05;							// stretch
-    float o=sin(uv.x*215.4);				// offset
-    float s=cos(uv.x*33.1)*.3 +.7;			// speed
-    float trail = mix(95.0,35.0,s);			// trail length
+    uv.y *= 0.05;							
+    float o=sin(uv.x*215.4);				// Отступ
+    float s=cos(uv.x*33.1)*.3 +.7;			// Скорость
+    float trail = mix(95.0,35.0,s);			// Длина линий
     float yv = fract(uv.y + t*s + o) * trail;
     yv = 1.0/yv;
     yv = smoothstep(0.0,1.0,yv*yv);
@@ -23,7 +23,7 @@ float vDrop(vec2 uv,float t)
 
 void main(void)
 {
-    vec2 p = (gl_FragCoord.xy - 0.001 * resolution.xy) / resolution.y;
+    vec2 p = (gl_FragCoord.xy - 0.001 * resolution.xy) / resolution.y; // Разрешение текстуры
     float d = length(p)+0.2;
 	p = vec2(atan(p.x, p.y) / 3.14, 3 / d);
     float t =  time*0.4;

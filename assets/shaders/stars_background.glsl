@@ -11,7 +11,7 @@ float rand(vec2 co)
 
 void main(void)
 {
-	float size = 30;
+	float size = 30; 		// Размер звезд 
 	float prob = 0.99;
 	
 	vec2 pos = floor(1.0 / size * gl_FragCoord.xy);
@@ -20,6 +20,7 @@ void main(void)
 	float starValue = rand(pos);
 	
 	
+	// Расположение звезд
 	if (rand(gl_FragCoord.xy / resolution.xy) > 0.996)
 	{
 		float r = rand(gl_FragCoord.xy);
