@@ -1,18 +1,17 @@
 import 'package:rick_and_morty_app/domain/dto/dto.dart';
 import 'package:rick_and_morty_app/domain/repositories/character_repository.dart';
 
-class AddCharacterToFavorite {
-  AddCharacterToFavorite(
+class ChangeCharacterFavoriteStatus {
+  ChangeCharacterFavoriteStatus(
     this.characterRepository,
-    this.character,
-    this.status,
   );
 
   final CharacterRepository characterRepository;
-  final Character character;
-  final bool status;
 
-  Future<void> call() async {
+  Future<void> call(
+    Character character,
+    bool status,
+  ) async {
     await characterRepository.changeCharacterFavoriteStatusById(character.id, status);
   }
 }

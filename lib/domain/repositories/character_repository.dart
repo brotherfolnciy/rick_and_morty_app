@@ -6,4 +6,6 @@ abstract class CharacterRepository {
   Future<List<Character>> fetchCharactersByPlanetId(int id);
 
   Future<List<Character>> fetchFavoriteCharacters();
+
+  Future<List<int>> fetchFavoriteCharacterIds();
 }

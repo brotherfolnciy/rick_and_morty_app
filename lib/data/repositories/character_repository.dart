@@ -1,10 +1,13 @@
+import 'package:injectable/injectable.dart';
 import 'package:rick_and_morty_app/data/consts/consts.dart';
 import 'package:rick_and_morty_app/data/data.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart' as api;
 import 'package:rick_and_morty_app/domain/domain.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class RickAndMortyCharacterRepository extends CharacterRepository {
+@Named('RickAndMortyCharacterRepository')
+@Injectable(as: CharacterRepository)
+class RickAndMortyCharacterRepository implements CharacterRepository {
   final _characterService = api.CharacterService();
   final _locationService = api.LocationService();
   final _mapper = Mappr();
@@ -48,11 +51,15 @@ class RickAndMortyCharacterRepository extends CharacterRepository {
 
   @override
   Future<List<Character>> fetchFavoriteCharacters() async {
-    final prefs = await SharedPreferences.getInstance();
-    final favoriteCharacterIds =
-        (prefs.getStringList(favoriteCharactersPrefsKey) ?? []).map((e) => int.parse(e)).toList();
+    final favoriteCharacterIds = await fetchFavoriteCharacterIds();
 
     final characters = await _characterService.getListOfCharacters(favoriteCharacterIds);
     return _mapper.convertList(characters);
+  }
+
+  @override
+  Future<List<int>> fetchFavoriteCharacterIds() async {
+    final prefs = await SharedPreferences.getInstance();
+    return (prefs.getStringList(favoriteCharactersPrefsKey) ?? []).map((e) => int.parse(e)).toList();
   }
 }
