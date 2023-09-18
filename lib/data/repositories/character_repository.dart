@@ -39,6 +39,8 @@ class RickAndMortyCharacterRepository implements CharacterRepository {
 
     final residentIds = <int>[];
 
+    if (residentIds.isEmpty) return [];
+
     for (var residentUrl in planet.residents) {
       final id = int.parse(cropCharacterUrlToId(residentUrl));
       residentIds.add(id);
@@ -52,6 +54,8 @@ class RickAndMortyCharacterRepository implements CharacterRepository {
   @override
   Future<List<Character>> fetchFavoriteCharacters() async {
     final favoriteCharacterIds = await fetchFavoriteCharacterIds();
+
+    if (favoriteCharacterIds.isEmpty) return [];
 
     final characters = await _characterService.getListOfCharacters(favoriteCharacterIds);
     return _mapper.convertList(characters);
