@@ -9,14 +9,22 @@ class WarpSpeedDrawer extends StatefulWidget {
 
 class _WarpSpeedDrawerState extends State<WarpSpeedDrawer> with SingleTickerProviderStateMixin {
   var updateTime = 0.0;
+  Ticker? ticker;
 
   @override
   void initState() {
     super.initState();
-    createTicker((elapsed) {
+    ticker = createTicker((elapsed) {
       updateTime = elapsed.inMilliseconds / 1000;
       setState(() {});
-    }).start();
+    });
+    ticker?.start();
+  }
+
+  @override
+  void dispose() {
+    ticker?.dispose();
+    super.dispose();
   }
 
   @override

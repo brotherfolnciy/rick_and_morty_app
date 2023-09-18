@@ -2,9 +2,9 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
-
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:rick_and_morty_app/domain/dto/character/character.dart';
@@ -23,3 +23,4 @@ part 'character_card.dart';
 part 'rating.dart';
 part 'planets_filter.dart';
 part 'favorite_button.dart';
+part 'loader.dart';

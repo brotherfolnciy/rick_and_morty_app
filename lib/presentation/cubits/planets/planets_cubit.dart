@@ -22,7 +22,6 @@ class PlanetsCubit extends Cubit<PlanetsState> {
 
       emit(PlanetsState.success(items: planets));
     } catch (e) {
-      // TODO: Add error handling
       logger.e(e);
       emit(PlanetsState.failure(message: 'error'));
     }

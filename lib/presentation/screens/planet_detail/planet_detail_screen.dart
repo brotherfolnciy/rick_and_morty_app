@@ -83,15 +83,15 @@ class PlanetDetailScreen extends StatelessWidget {
                           ),
                           InfoTile(
                             tittle: 'Type:',
-                            info: planet!.$1.name,
+                            info: planet!.$1.type ?? '',
                           ),
                           InfoTile(
                             tittle: 'Dimension:',
-                            info: planet!.$1.name,
+                            info: planet!.$1.dimension ?? '',
                           ),
                           InfoTile(
                             tittle: 'Created:',
-                            info: DateTime.now().toString(),
+                            info: planet!.$1.created.toString(),
                           ),
                         ],
                       ),
@@ -105,34 +105,25 @@ class PlanetDetailScreen extends StatelessWidget {
               height: screenSize.height - 50,
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.only(bottom: 30),
-              child: CharactersCarousel(
-                width: screenSize.width * .75,
-                characters: [
-                  Character(
-                    id: 123,
-                    name: 'lois',
-                    image: 'https://www.kasandbox.org/programming-images/avatars/spunky-sam.png',
-                  ),
-                  Character(
-                    id: 123,
-                    name: 'lois',
-                    image: 'https://www.kasandbox.org/programming-images/avatars/spunky-sam.png',
-                  ),
-                  Character(
-                    id: 123,
-                    name: 'lois',
-                    image: 'https://www.kasandbox.org/programming-images/avatars/spunky-sam.png',
-                  ),
-                ],
-                onPressed: (character) => context.router.push(
-                  CharacterDetailsRoute(
-                    character: Character(
-                      id: 123,
-                      name: 'lois',
-                      image: 'https://www.kasandbox.org/programming-images/avatars/spunky-sam.png',
-                    ),
-                  ),
-                ),
+              child: BlocBuilder<CharactersCubit, CharactersState>(
+                builder: (context, state) {
+                  return BlocBuilder<CharactersCubit, CharactersState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () => Loader(),
+                        success: (characters) => CharactersCarousel(
+                          width: screenSize.width * .75,
+                          characters: characters,
+                          onPressed: (character) => context.router.push(
+                            CharacterDetailsRoute(
+                              character: character,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ],
@@ -171,17 +162,17 @@ class PlanetDetailScreen extends StatelessWidget {
                 ),
                 InfoTile(
                   tittle: 'Type:',
-                  info: planet!.$1.name,
+                  info: planet!.$1.type ?? '',
                   fontSize: 24,
                 ),
                 InfoTile(
                   tittle: 'Dimension:',
-                  info: planet!.$1.name,
+                  info: planet!.$1.dimension ?? '',
                   fontSize: 24,
                 ),
                 InfoTile(
                   tittle: 'Created:',
-                  info: DateTime.now().toString(),
+                  info: planet!.$1.created.toString(),
                   fontSize: 24,
                 ),
               ],
@@ -189,35 +180,22 @@ class PlanetDetailScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 17),
-            child: CharactersCarousel(
-              width: context.screenSize.width * .9,
-              minimazedCards: !context.isDesktop,
-              characters: [
-                Character(
-                  id: 123,
-                  name: 'lois',
-                  image: 'https://www.kasandbox.org/programming-images/avatars/spunky-sam.png',
-                ),
-                Character(
-                  id: 123,
-                  name: 'lois',
-                  image: 'https://www.kasandbox.org/programming-images/avatars/spunky-sam.png',
-                ),
-                Character(
-                  id: 123,
-                  name: 'lois',
-                  image: 'https://www.kasandbox.org/programming-images/avatars/spunky-sam.png',
-                ),
-              ],
-              onPressed: (character) => context.router.push(
-                CharacterDetailsRoute(
-                  character: Character(
-                    id: 123,
-                    name: 'lois',
-                    image: 'https://www.kasandbox.org/programming-images/avatars/spunky-sam.png',
+            child: BlocBuilder<CharactersCubit, CharactersState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => Loader(),
+                  success: (characters) => CharactersCarousel(
+                    width: context.screenSize.width * .9,
+                    minimazedCards: !context.isDesktop,
+                    characters: characters,
+                    onPressed: (character) => context.router.push(
+                      CharacterDetailsRoute(
+                        character: character,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ),
         ],

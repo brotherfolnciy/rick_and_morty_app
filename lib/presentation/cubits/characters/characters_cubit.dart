@@ -22,7 +22,6 @@ class CharactersCubit extends Cubit<CharactersState> {
 
       emit(CharactersState.success(items: characters));
     } catch (e) {
-      // TODO: Add error handling
       logger.e(e);
       emit(CharactersState.failure(message: 'error'));
     }
@@ -38,7 +37,6 @@ class CharactersCubit extends Cubit<CharactersState> {
 
       emit(CharactersState.success(items: characters));
     } catch (e) {
-      // TODO: Add error handling
       logger.e(e);
       emit(CharactersState.failure(message: 'error'));
     }
@@ -57,7 +55,6 @@ class CharactersCubit extends Cubit<CharactersState> {
 
           emit(CharactersState.success(items: items));
         } catch (e) {
-          // TODO: Add error handling
           logger.e(e);
           emit(CharactersState.failure(message: 'error'));
         }

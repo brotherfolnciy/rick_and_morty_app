@@ -9,14 +9,22 @@ class StarsBackgroundDrawer extends StatefulWidget {
 
 class _StarsBackgroundDrawerState extends State<StarsBackgroundDrawer> with SingleTickerProviderStateMixin {
   var updateTime = 0.0;
+  Ticker? ticker;
 
   @override
   void initState() {
     super.initState();
-    createTicker((elapsed) {
+    ticker = createTicker((elapsed) {
       updateTime = elapsed.inMilliseconds / 1000;
       setState(() {});
-    }).start();
+    });
+    ticker?.start();
+  }
+
+  @override
+  void dispose() {
+    ticker?.dispose();
+    super.dispose();
   }
 
   @override

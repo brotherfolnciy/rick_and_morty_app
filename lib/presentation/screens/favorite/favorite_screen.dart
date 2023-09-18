@@ -1,8 +1,20 @@
 part of 'favorite_part.dart';
 
 @RoutePage()
-class FavoriteScreen extends StatelessWidget {
+class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
+
+  @override
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CharactersCubit>().fetchFavoriteCharacters();
+    context.read<PlanetsCubit>().fetchAllPlanets();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +49,35 @@ class FavoriteScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
-            child: PlanetsFilter(
-              items: [],
-              onSelected: (value) {},
+            child: BlocBuilder<PlanetsCubit, PlanetsState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => Loader(),
+                  success: (planets) => PlanetsFilter(
+                    items: planets.map((e) => e.name).toList(),
+                    onSelected: (planet) {
+                      context.read<CharactersCubit>().fetchFavoriteCharacters();
+                    },
+                  ),
+                );
+              },
             ),
           ),
-          CharactersCarousel(
-            width: context.isDesktop ? context.screenSize.width * .5 : context.screenSize.width * .85,
-            onPressed: (character) {},
-            characters: [
-              Character(id: 2, name: 'name'),
-            ],
+          BlocBuilder<CharactersCubit, CharactersState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => Loader(),
+                success: (characters) => CharactersCarousel(
+                  width: context.isDesktop ? context.screenSize.width * .5 : context.screenSize.width * .85,
+                  onPressed: (character) {
+                    context.router.push(
+                      CharacterDetailsRoute(character: character),
+                    );
+                  },
+                  characters: characters,
+                ),
+              );
+            },
           )
         ],
       ),

@@ -17,7 +17,9 @@ class ContactScreen extends StatelessWidget {
           ),
         ],
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: context.screenSize.width * .25),
+          padding: EdgeInsets.symmetric(
+            horizontal: context.screenSize.width * (context.isDesktop ? .25 : .1),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,7 +28,7 @@ class ContactScreen extends StatelessWidget {
                 'About us',
                 style: AppTextStyles.main.copyWith(
                   color: AppColors.toxicGreen,
-                  fontSize: 100,
+                  fontSize: context.isDesktop ? 100 : 30,
                   fontFamily: 'RickAndMorty',
                 ),
               ),
@@ -34,7 +36,7 @@ class ContactScreen extends StatelessWidget {
                 "You're talking about Inception? Wubba lubba dub dub! This isn't Game of Thrones, Morty. Awwww thankss your preferences better that way. Plus, if you get in kind of a cool enough relationship, you can sort of follow each bies for 25 schmeckles!",
                 style: AppTextStyles.main.copyWith(
                   color: Colors.white,
-                  fontSize: 30,
+                  fontSize: context.isDesktop ? 30 : 20,
                 ),
                 textAlign: TextAlign.justify,
               ),
@@ -44,7 +46,7 @@ class ContactScreen extends StatelessWidget {
                   'rickyandmortytravieso@gmail.com',
                   style: AppTextStyles.main.copyWith(
                     color: AppColors.toxicGreen,
-                    fontSize: 20,
+                    fontSize: context.isDesktop ? 20 : 12,
                   ),
                 ),
               ),

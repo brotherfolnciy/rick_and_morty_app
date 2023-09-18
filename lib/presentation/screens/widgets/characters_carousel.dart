@@ -32,6 +32,12 @@ class _CharactersCarouselState extends State<CharactersCarousel> {
   @override
   Widget build(BuildContext context) {
     final screenSize = context.screenSize;
+    if (widget.characters.isEmpty) {
+      return Text(
+        'Characters missing',
+        style: AppTextStyles.bold.copyWith(color: AppColors.toxicGreen),
+      );
+    }
     return Column(
       children: [
         Row(

@@ -14,7 +14,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final items = List.generate(80, (index) => index);
 
     return CustomPageBuilder(
-      // appBar: buildCustomAppBar(context),
       builder: (context, isDesktop, size) {
         final scrollViewSize = Size(
           isDesktop ? size.width * (items.length / 15) : size.width,
@@ -42,18 +41,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       width: scrollViewSize.width,
                       height: scrollViewSize.height,
-                      child: PlanetsGenerator(
-                        onTap: (shape) {
-                          context.router.push(
-                            PlanetDetailRoute(
-                              planet: (
-                                Location(id: 1, name: 'fsdfsdfasdf'),
-                                shape,
-                              ),
+                      child: BlocBuilder<PlanetsCubit, PlanetsState>(
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            orElse: () => SizedBox.shrink(),
+                            success: (items) => PlanetsGenerator(
+                              onTap: (shape) {
+                                final location = items[shape.index];
+                                context.read<CharactersCubit>().fetchCharactersByPlanet(location.id);
+                                context.router.push(
+                                  PlanetDetailRoute(
+                                    planet: (
+                                      location,
+                                      shape,
+                                    ),
+                                  ),
+                                );
+                              },
+                              count: items.length,
                             ),
                           );
                         },
-                        count: 10,
                       ),
                     ),
                   ),
