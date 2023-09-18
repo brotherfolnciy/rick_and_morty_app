@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
 import 'package:rick_and_morty_app/domain/domain.dart';
 import 'package:rick_and_morty_app/injection/di.dart';
 
@@ -8,6 +9,8 @@ part 'characters_cubit.freezed.dart';
 
 class CharactersCubit extends Cubit<CharactersState> {
   CharactersCubit() : super(CharactersState.initial());
+
+  final logger = Logger();
 
   void fetchCharactersByPlanet(int planetId) async {
     try {
@@ -20,6 +23,7 @@ class CharactersCubit extends Cubit<CharactersState> {
       emit(CharactersState.success(items: characters));
     } catch (e) {
       // TODO: Add error handling
+      logger.e(e);
       emit(CharactersState.failure(message: 'error'));
     }
   }
@@ -35,6 +39,7 @@ class CharactersCubit extends Cubit<CharactersState> {
       emit(CharactersState.success(items: characters));
     } catch (e) {
       // TODO: Add error handling
+      logger.e(e);
       emit(CharactersState.failure(message: 'error'));
     }
   }
@@ -53,6 +58,7 @@ class CharactersCubit extends Cubit<CharactersState> {
           emit(CharactersState.success(items: items));
         } catch (e) {
           // TODO: Add error handling
+          logger.e(e);
           emit(CharactersState.failure(message: 'error'));
         }
       },
