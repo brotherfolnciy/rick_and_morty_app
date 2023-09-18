@@ -40,22 +40,22 @@ class CharactersCubit extends Cubit<CharactersState> {
   }
 
   void changeCharacterFavoriteStatus(Character character, bool status) async {
-    try {
-      final changeCharacterFavoriteStatus = locator.get<ChangeCharacterFavoriteStatus>();
+    state.whenOrNull(
+      success: (items) async {
+        try {
+          final changeCharacterFavoriteStatus = locator.get<ChangeCharacterFavoriteStatus>();
 
-      await changeCharacterFavoriteStatus(character, status);
+          await changeCharacterFavoriteStatus(character, status);
 
-      state.whenOrNull(
-        success: (items) {
           final index = items.indexOf(character);
           items[index] = character.copyWith(favorite: status);
 
           emit(CharactersState.success(items: items));
-        },
-      );
-    } catch (e) {
-      // TODO: Add error handling
-      emit(CharactersState.failure(message: 'error'));
-    }
+        } catch (e) {
+          // TODO: Add error handling
+          emit(CharactersState.failure(message: 'error'));
+        }
+      },
+    );
   }
 }
