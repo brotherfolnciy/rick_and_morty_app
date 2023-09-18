@@ -20,6 +20,15 @@ dependencies:
     git: https://github.com/Yash-Garg/RickandMorty-Dart-Wrapper.git
   injectable: ^2.3.0
   get_it: ^7.6.0
+  auto_mappr_annotation: ^1.2.0
+  shared_preferences: ^2.2.0
+  flutter_bloc: ^8.1.3
+  auto_route: 7.8.0
+  touchable: ^1.0.2
+  infinite_carousel: ^1.0.3
+  flutter_svg: ^2.0.7
+  extended_image: ^8.1.1
+  logger: ^2.0.2
 
 dependency_overrides:
   dio: ^5.0.0
@@ -35,9 +44,27 @@ dev_dependencies:
   freezed: ^2.4.2
   json_serializable: ^6.7.1
   injectable_generator: ^2.4.0
+  auto_mappr: ^1.7.0
+  auto_route_generator: ^7.3.0
 
 flutter:
   uses-material-design: true
   shaders:
-    - assets/warp_speed.glsl
-    - assets/stars_background.glsl
+    - assets/shaders/planet_texture.glsl
+    - assets/shaders/warp_speed.glsl
+    - assets/shaders/stars_background.glsl
+  fonts:
+    - family: RickAndMorty
+      fonts:
+        - asset: assets/fonts/rick_and_morty.ttf
+    - family: IBMPlexMono
+      fonts:
+        - asset: assets/fonts/ibm_plex_mono/IBMPlexMono-Light.ttf
+          weight: 300
+        - asset: assets/fonts/ibm_plex_mono/IBMPlexMono-Bold.ttf
+          weight: 400
+        - asset: assets/fonts/ibm_plex_mono/IBMPlexMono-Regular.ttf
+          weight: 700
+  assets:
+    - assets/images/
+    - assets/icons/

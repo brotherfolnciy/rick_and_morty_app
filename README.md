@@ -1,16 +1,11 @@
-# rick_and_morty_app
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Что есть в приложении? 
+---
+- [X] Проект написан в соответствии с чистой архитектурой: <br> 
+- [X] Стейт менеджер Cubit
+- [X] Добавлено кеширование картинок 
+- [X] Модуль API предоставлялся самими создателями на сайте - https://github.com/Yash-Garg/RickandMorty-Dart-Wrapper <br> 
+- [X] Все модели (DTO) сгенерированы с помощью Freezed + Json_Serializable
+- [X] Добавлен Injector для удобной иньекции зависимостей в проекте
+- [X] Добавлена навигация с помощью роутера (AutoRoute)
+- [X] Добавлены шейдеры для отрисовки варп-прыжка и звезд 
+- [X] Добавлена поддержка macos
